@@ -1,7 +1,4 @@
-
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import React, { useState } from "react";
 
 const symptomsList = [
   "Headache", "Lower Back Pain", "Chest Pain", "Abdominal Pain", "Joint Pain",
@@ -40,28 +37,39 @@ export default function SymptomChecker() {
           <p className="mb-2">Select your symptoms:</p>
           <div className="grid grid-cols-2 gap-2 w-full max-w-md">
             {symptomsList.map((symptom) => (
-              <Button
+              <button
                 key={symptom}
-                variant={selectedSymptoms.includes(symptom) ? "default" : "outline"}
+                className={`px-4 py-2 rounded ${
+                  selectedSymptoms.includes(symptom)
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-black"
+                }`}
                 onClick={() => toggleSymptom(symptom)}
               >
                 {symptom}
-              </Button>
+              </button>
             ))}
           </div>
-          <Button className="mt-4" onClick={handleSubmit} disabled={selectedSymptoms.length === 0}>
+          <button
+            className="mt-4 px-6 py-2 bg-green-500 text-white rounded"
+            onClick={handleSubmit}
+            disabled={selectedSymptoms.length === 0}
+          >
             Get Advice
-          </Button>
+          </button>
         </>
       ) : (
-        <Card className="w-full max-w-md p-4 mt-4">
-          <CardContent>
-            <h2 className="text-xl font-semibold mb-2">AI Health Advice</h2>
-            <p className="mb-2">Based on your symptoms: {selectedSymptoms.join(", ")}</p>
-            <p>⚠️ This is not a diagnosis. Please consult a doctor for a professional opinion.</p>
-            <Button className="mt-4" onClick={() => setShowResults(false)}>Check Another Symptom</Button>
-          </CardContent>
-        </Card>
+        <div className="w-full max-w-md p-4 mt-4 bg-white shadow rounded">
+          <h2 className="text-xl font-semibold mb-2">AI Health Advice</h2>
+          <p className="mb-2">Based on your symptoms: {selectedSymptoms.join(", ")}</p>
+          <p>⚠️ This is not a diagnosis. Please consult a doctor for a professional opinion.</p>
+          <button
+            className="mt-4 px-6 py-2 bg-blue-500 text-white rounded"
+            onClick={() => setShowResults(false)}
+          >
+            Check Another Symptom
+          </button>
+        </div>
       )}
     </div>
   );
