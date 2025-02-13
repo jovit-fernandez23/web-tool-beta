@@ -4,10 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Symptom Checker</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
   <div id="root"></div>
-  <script type="module" src="./SymptomChecker.js"></script>
+
+  <!-- Include React and ReactDOM -->
+  <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel for JSX (development only) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- SymptomChecker Script -->
+  <script type="text/babel" src="SymptomChecker.js"></script>
+
+  <script type="text/babel">
+    // Render the SymptomChecker component
+    ReactDOM.render(<SymptomChecker />, document.getElementById("root"));
+  </script>
 </body>
 </html>
